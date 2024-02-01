@@ -12,15 +12,30 @@
     <p>TThis counterb is {{ oddOrEven }}</p>
     <div class="edit">
       <h4>Edit counter title</h4>
-      <input type="text" v-model="counterData.title">
+      <input type="text" v-model="counterData.title" v-autofocus>
     </div>
   </div>
 </template>
 
 <script setup>
+/*
+Import
+*/
 import { computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch } from 'vue'
+import {vAutofocus } from '@/directives/vAutofocus'
 
+/*
+App title
+*/
 const appTitle = 'My App'
+
+onMounted(() => {
+  console.log('Stuff related to appTitle')
+})
+
+/*
+Counter
+*/
 const counterData = reactive({
   count: 0,
   title: 'My Counter'
@@ -40,12 +55,11 @@ const decreaseCounter = value => {
   counterData.count -= value
 }
 
+onMounted(() => {
+  console.log('Stuff related to counter')
+})
 onBeforeMount(() => {
   console.log('onBeforeMount')
-})
-
-onMounted(() => {
-  console.log('onMounted')
 })
 
 onBeforeUnmount(() => {
@@ -72,8 +86,6 @@ onBeforeUpdate(() => {
 onUpdated(() => {
   console.log('onUpdated')
 })
-
-
 
 </script>
 
