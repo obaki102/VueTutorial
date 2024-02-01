@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTitle }}</h2>
+    <h2 ref="appTitleRef">{{ appTitle }}</h2>
     <h3>{{ counterData.title }}:</h3>
     <div>
       <button @click="decreaseCounter(2)" class="btn">-2</button>
@@ -21,16 +21,16 @@
 /*
 Import
 */
-import { computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch } from 'vue'
+import { ref, computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch } from 'vue'
 import {vAutofocus } from '@/directives/vAutofocus'
 
 /*
 App title
 */
 const appTitle = 'My App'
-
+const appTitleRef = ref(null)
 onMounted(() => {
-  console.log('Stuff related to appTitle')
+  console.log(appTitleRef.value.offsetWidth)
 })
 
 /*
