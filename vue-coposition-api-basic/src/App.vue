@@ -3,7 +3,11 @@
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
   </nav>
-
+  <!-- <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view> -->
   <RouterView />
 </template>
 
@@ -40,6 +44,4 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
-
-
 </style>
