@@ -21,7 +21,7 @@
 /*
 Import
 */
-import { ref, computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch } from 'vue'
+import { ref, computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch, nextTick } from 'vue'
 import {vAutofocus } from '@/directives/vAutofocus'
 
 /*
@@ -49,6 +49,9 @@ watch(() => counterData.count, (newCount) => {
 const oddOrEven = computed(() => counterData.count % 2 === 0 ? 'even' : 'odd');
 const increaseCounter = value => {
   counterData.count += value
+  nextTick(() => {
+    console.log('nextTick')
+  })
 }
 
 const decreaseCounter = value => {
