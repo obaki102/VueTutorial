@@ -9,7 +9,7 @@
       <button @click="increaseCounter(1)" class="btn">+</button>
       <button @click="increaseCounter(2)" class="btn">+2</button>
     </div>
-    <p>TThis counterb is {{ oddOrEven }}</p>
+    <p>TThis counter is {{ oddOrEven }}</p>
     <div class="edit">
       <h4>Edit counter title</h4>
       <input type="text" v-model="counterData.title" v-autofocus>
@@ -21,8 +21,9 @@
 /*
 Import
 */
-import { ref, computed, onActivated, onBeforeMount, onBeforeUnmount, onBeforeUpdate, onDeactivated, onMounted, onUnmounted, onUpdated, reactive, watch, nextTick } from 'vue'
-import {vAutofocus } from '@/directives/vAutofocus'
+import { ref, onMounted } from 'vue'
+import { vAutofocus } from '@/directives/vAutofocus'
+import { useCounter } from '@/use/useCounter'
 
 /*
 App title
@@ -36,61 +37,12 @@ onMounted(() => {
 /*
 Counter
 */
-const counterData = reactive({
-  count: 0,
-  title: 'My Counter'
-})
-
-watch(() => counterData.count, (newCount) => {
-  if (newCount == 20)
-    alert('20 reach')
-})
-
-const oddOrEven = computed(() => counterData.count % 2 === 0 ? 'even' : 'odd');
-const increaseCounter = value => {
-  counterData.count += value
-  nextTick(() => {
-    console.log('nextTick')
-  })
-}
-
-const decreaseCounter = value => {
-  counterData.count -= value
-}
-
-onMounted(() => {
-  console.log('Stuff related to counter')
-})
-onBeforeMount(() => {
-  console.log('onBeforeMount')
-})
-
-onBeforeUnmount(() => {
-  console.log('onBeforeUnmount')
-})
-
-onUnmounted(() => {
-  console.log('onUnmounted')
-})
-
-
-onActivated(() => {
-  console.log('onActivated')
-})
-
-onDeactivated(() => {
-  console.log('onDeactivated')
-})
-
-onBeforeUpdate(() => {
-  console.log('onBeforeUpdate')
-})
-
-onUpdated(() => {
-  console.log('onUpdated')
-})
+const { counterData, oddOrEven, 
+    increaseCounter, decreaseCounter } = useCounter()
 
 </script>
+
+
 
 <style>
 .home {
@@ -107,4 +59,4 @@ onUpdated(() => {
 .edt {
   margin-top: 60px;
 }
-</style>
+</style>@/use/useCounter
